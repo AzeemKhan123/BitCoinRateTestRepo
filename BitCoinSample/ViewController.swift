@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var enterAppButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,9 @@ class ViewController: UIViewController,UITextFieldDelegate {
         if UserDefaults.standard.string(forKey: "USER_NAME") != nil {
             self.performSegue(withIdentifier: "OpenWelcome", sender: self);
         }
+    
+        enterAppButton.setBackgroundImage(UIImage(color: #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1), size: enterAppButton.frame.size), for: .normal)
+
     }
     
     @IBAction func enterApp(_ sender: UIButton) {

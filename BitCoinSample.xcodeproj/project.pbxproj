@@ -15,6 +15,7 @@
 		75EF4ADF21E878A70022831E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75EF4ADD21E878A70022831E /* LaunchScreen.storyboard */; };
 		75EF4AE721E87AE00022831E /* CurrencySelectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EF4AE621E87AE00022831E /* CurrencySelectorVC.swift */; };
 		D6F4A6858D9042B7691CB1B2 /* Pods_BitCoinSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D85620BAE2761EECE37871 /* Pods_BitCoinSample.framework */; };
+		EF34DAA121F83A3F00769800 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF34DAA021F83A3F00769800 /* UIImage+Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		75EF4AE021E878A70022831E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75EF4AE621E87AE00022831E /* CurrencySelectorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectorVC.swift; sourceTree = "<group>"; };
 		B07FB4B5BA4D8D2291930F1C /* Pods-BitCoinSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitCoinSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitCoinSample/Pods-BitCoinSample.release.xcconfig"; sourceTree = "<group>"; };
+		EF34DAA021F83A3F00769800 /* UIImage+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				75EF4AD621E878A50022831E /* ViewController.swift */,
 				75EF4AE621E87AE00022831E /* CurrencySelectorVC.swift */,
 				755FEEDA21E897E200D8312F /* BitRateDisplayVC.swift */,
+				EF34DAA021F83A3F00769800 /* UIImage+Color.swift */,
 				75EF4AD821E878A50022831E /* Main.storyboard */,
 				75EF4ADB21E878A70022831E /* Assets.xcassets */,
 				75EF4ADD21E878A70022831E /* LaunchScreen.storyboard */,
@@ -224,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF34DAA121F83A3F00769800 /* UIImage+Color.swift in Sources */,
 				75EF4AE721E87AE00022831E /* CurrencySelectorVC.swift in Sources */,
 				75EF4AD721E878A50022831E /* ViewController.swift in Sources */,
 				75EF4AD521E878A50022831E /* AppDelegate.swift in Sources */,

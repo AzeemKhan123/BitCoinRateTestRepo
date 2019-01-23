@@ -14,6 +14,7 @@ class CurrencySelectorVC: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBOutlet weak var currencyPicker: UIPickerView!
     var pickerData: [String] = [String]()
     @IBOutlet weak var currencyLabel: UILabel!
+    @IBOutlet weak var proceedButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,8 @@ class CurrencySelectorVC: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         if let nameString = UserDefaults.standard.string(forKey: "USER_NAME"){
             welcomeLabel.text = "Hello! " + nameString
         }
+        
+        proceedButton.setBackgroundImage(UIImage(color: #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1), size: proceedButton.frame.size), for: .normal)
     }
     
     //MARK: - segue delegate. Pass the seelcted currency to BTC rate dsiplay screen
@@ -48,11 +51,12 @@ class CurrencySelectorVC: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerData.count
     }
-    // The data to return fopr the row and component (column) that's being passed in
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let selected = pickerView.selectedRow(inComponent: component) == row
+        return NSAttributedString(string: pickerData[row], attributes: [.foregroundColor: selected ? #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1) : .black])
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.currencyLabel.text = pickerData[row]
+        pickerView.reloadAllComponents()
     }
 }

@@ -14,12 +14,15 @@ class BitRateDisplayVC: UIViewController{
     var currencyIdentfier : String = ""
     @IBOutlet weak var bitRateLabel: UILabel!
     @IBOutlet weak var progressView: UIActivityIndicatorView!
+    @IBOutlet weak var loadingLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.bitRateLabel.isHidden = true
         //register for move to background notification
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
-        self.title = "Bit Coin Rate"
+        self.title = "Result"
+        loadingLabel.isHidden = true
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -30,12 +33,11 @@ class BitRateDisplayVC: UIViewController{
     @objc private func applicationWillResignActive() {
         print("applicationWillResignActive")
         //go back to currency selection screen on app close to background
-        self.navigationController?.popViewController(animated: true)
         NotificationCenter.default.removeObserver(self)
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.progressView.startAnimating()
         //get today BTC rate
         self.currencyConvery(_currency: currencyIdentfier)
     }
@@ -45,12 +47,19 @@ class BitRateDisplayVC: UIViewController{
     /// - Parameters:
     ///   - currency: Currency Identifier (like USD, EUR, GBP etc)
     func currencyConvery(_currency:String){
+        loadingLabel.isHidden = false
+        self.progressView.startAnimating()
         let requestURl = "https://apiv2.bitcoinaverage.com/convert/global?from=BTC&to="+_currency+"&amount=1"
-        Alamofire.request(requestURl).responseJSON { response in
-            self.progressView.stopAnimating()
+        Alamofire.request(requestURl).responseJSON {[weak self] response in
+            guard let sself = self else {
+                return
+            }
+            sself.progressView.stopAnimating()
+            sself.loadingLabel.isHidden = true
             if let value = response.result.value as? NSDictionary {
                 if let price = value.object(forKey: "price"){
-                    self.bitRateLabel.text = "1 BTC" + " = " + (price as! NSNumber).stringValue + " " + self.currencyIdentfier
+                    sself.bitRateLabel.text = "1 BTC" + " = " + (price as! NSNumber).stringValue + " " + sself.currencyIdentfier
+                    sself.bitRateLabel.isHidden = false
                 }
             }
         }

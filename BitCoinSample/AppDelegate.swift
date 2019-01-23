@@ -16,6 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if UserDefaults.standard.string(forKey: "USER_NAME") != nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: .main)
+            if let nav = storyboard.instantiateInitialViewController() as? UINavigationController {
+                let vc = storyboard.instantiateViewController(withIdentifier: "CurrencySelectorVC")
+                nav.setViewControllers([vc], animated: false)
+                window?.rootViewController = nav
+            }
+        }
         return true
     }
 
